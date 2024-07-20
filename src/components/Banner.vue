@@ -1,7 +1,7 @@
 <template>
     <div class="banner">
       <div class="banner-content">
-        <h1>My Company Name</h1>
+        <h1>ASTRA INŽENJERING</h1>
       </div>
       <video autoplay muted loop class="banner-video" v-if="videoSrc">
         <source :src="videoSrc" type="video/mp4">
@@ -17,14 +17,16 @@
   </script>
   
   <style scoped>
-  .banner {
+  
+ .banner{
     position: relative;
     height: 50vh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
+    background: #e5f505;
   }
   .banner-content {
     position: absolute;

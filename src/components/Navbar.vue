@@ -1,15 +1,15 @@
 <template>
   <nav class="navbar">
+  <div class="logo-links">
     <div class="navbar-brand">
       <img src=""  alt="Logo" class="navbar-logo" />
     </div>
     <div class="navbar-links">
-      <a class="navbar-item" href="/">Link1</a>
-      <a class="navbar-item" href="/page1">Link2</a>
-      <a class="navbar-item" href="/page2">Link3</a>
-      <a class="navbar-item" href="/page3">Link4</a>
-      <a class="navbar-item" href="/page4">Link5</a>
+      <a class="navbar-item" href="/">POČETNA</a>
+      <a class="navbar-item" href="/about">O NAMA</a>
+      <a class="navbar-item" href="/contact">KONTAKT</a>
     </div>
+  </div>
     <div class="navbar-social">
       <a class="navbar-item" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
       <a class="navbar-item" href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -27,6 +27,10 @@
   background-color: #fff;
   padding: 0.5rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo-links{
+  display: flex;
+  align-items: center;
 }
 .navbar-logo {
   height: 40px;
