@@ -1,56 +1,58 @@
 <template>
-    <div class="banner">
-      <div class="banner-content">
-        <h1>ASTRA INŽENJERING</h1>
-      </div>
-      <video autoplay muted loop class="banner-video" v-if="videoSrc">
-        <source :src="videoSrc" type="video/mp4">
-      </video>
-      <div class="banner-slideshow" v-else>
-        <img :src="currentImage" alt="Banner Image" class="banner-image">
-      </div>
+  <div class="banner">
+    <div class="banner-content">
+      <img src="@/assets/Company/logo.jpeg" alt="Company Logo" class="banner-logo">
     </div>
-  </template>
-  
-  <script setup>
- 
-  </script>
-  
-  <style scoped>
-  
- .banner{
-    position: relative;
-    height: 50vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    background: #e5f505;
-  }
-  .banner-content {
-    position: absolute;
-    z-index: 2;
-    text-align: center;
-  }
-  .banner-content h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  .banner-video, .banner-slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-  .banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  </style>
-  
+    <div class="banner-slideshow">
+      <img src="@/assets/Banner/banner.jpeg" alt="Banner Image" class="banner-image">
+      <img src="@/assets/Banner/banner2.jpg" alt="Banner Image" class="banner-image">
+    </div>
+  </div>
+</template>
+
+
+<style scoped>
+.banner {
+  position: relative;
+  height: 50vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #FFFFFF;
+}
+
+.banner-content {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.banner-logo {
+  width: 300px; 
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 5px solid #FFD700;
+}
+
+.banner-slideshow {
+  position: absolute;
+  display: flex;
+  gap: 15rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.banner-image {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

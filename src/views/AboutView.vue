@@ -12,28 +12,26 @@
       <!-- Info Section -->
       <div class="info-section">
         <h3>Kontakt Informacije</h3>
-        <p>Email: ?????????????????????</p>
-        <p>Telefon: +381 63/214-136, +381 63/221-752</p>
-        <p>Adresa: Vojni put 210/II, Zemun, Beograd</p>
+        <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=goran@astraing.com&su=Subject&body=Body%20text" target="_blank" class="mail">goran@astraing.com</a></p>
+        <p>Telefon: +381 61/2700-613</p>
+        <p>Adresa:  Vojni put 210/II, Zemun, Beograd</p>
       </div>
       
       <!-- Images Section -->
       <div class="images-section">
-        <!-- <img src="@/assets/image1.jpg" alt="Image 1" class="image image1" />
-        <img src="@/assets/image2.jpg" alt="Image 2" class="image image2" />
-        <img src="@/assets/image3.jpg" alt="Image 3" class="image image3" /> -->
+        <img src="@/assets/Gallery/placeholder1.jpeg" alt="Image 1" class="image image1" />
+        <img src="@/assets/Gallery/placeholder2.jpeg" alt="Image 2" class="image image2" />
+        <img src="@/assets/Gallery/placeholder3.jpeg" alt="Image 3" class="image image3" />
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
-</script>
 
 <style scoped>
 .about {
   padding: 4rem 2rem;
-  background-color: #faf4f4;
+  background-color: #2d3d583b;
   text-align: center;
 }
 
@@ -45,7 +43,7 @@
 h2, h3 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #2B3A55;
 }
 
 .description {
@@ -80,15 +78,19 @@ h2, h3 {
 
 .image2 {
   top: 20%;
-  left: 40%;
+  left: 45%;
   width: 60%;
   height: 60%;
 }
 
 .image3 {
-  top: 40%;
-  left: 20%;
+  top: 45%;
+  left: 15%;
   width: 60%;
   height: 60%;
+}
+
+.mail{
+  text-decoration: none;
 }
 </style>
