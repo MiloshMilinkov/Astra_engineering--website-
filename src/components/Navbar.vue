@@ -107,6 +107,7 @@ li {
   font-size: 15px;
   transition: .8s ease all;
   padding-bottom: 4px;
+  font-weight:700;
 }
 
 .link:hover {

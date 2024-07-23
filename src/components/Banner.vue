@@ -1,25 +1,23 @@
+<!-- banner.vue -->
 <template>
   <div class="banner">
     <div class="banner-content">
       <img src="@/assets/Company/logo.jpeg" alt="Company Logo" class="banner-logo">
     </div>
     <div class="banner-slideshow">
-      <img src="@/assets/Banner/banner.jpeg" alt="Banner Image" class="banner-image">
-      <img src="@/assets/Banner/banner2.jpg" alt="Banner Image" class="banner-image">
+      <img src="@/assets/Gallery/Mesto3/placeholder3.jpeg" alt="Banner Image" class="banner-image">
     </div>
   </div>
 </template>
 
-
 <style scoped>
 .banner {
   position: relative;
-  height: 50vh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #FFFFFF;
 }
 
@@ -42,6 +40,8 @@
 .banner-slideshow {
   position: absolute;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 15rem;
   top: 0;
   left: 0;
@@ -53,6 +53,7 @@
 .banner-image {
   width: auto;
   height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 </style>
