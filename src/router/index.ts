@@ -8,19 +8,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: "POČETNA"
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
+      meta: {
+        title: "O NAMA"
+      }
     },
     {
       path: '/contact',
       name: 'contact',
-      component: ContactView
+      component: ContactView,
+      meta: {
+        title: "KONTAKT"
+      }
     }
   ]
 })
 
+router.beforeEach((to, from, next) =>{
+  document.title= `${to.meta.title}`;
+  next();
+});
 export default router
