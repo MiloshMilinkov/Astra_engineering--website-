@@ -5,10 +5,51 @@
       <img src="@/assets/Company/logo.jpeg" alt="Company Logo" class="banner-logo">
     </div>
     <div class="banner-slideshow">
-      <img src="@/assets/Gallery/Mesto3/placeholder3.jpeg" alt="Banner Image" class="banner-image">
+      <Swiper 
+        :modules="[Autoplay, EffectFade]"
+        :autoplay="{ delay: 5000 }"
+        :loop="true"
+        effect="fade"
+        :fadeEffect="{ crossFade: true }"
+        :speed = "1000"
+        @swiper="onSwiperInit"
+        @resize="onSwiperResize"
+        class="swiper"
+      >
+        <SwiperSlide v-for="(photo, index) in photos" :key="index">
+          <img :src="`src/assets/Gallery/SlideShow/${photo}`" alt="" class="swiper-slide-img">
+        </SwiperSlide>
+      </Swiper>
     </div>
   </div>
 </template>
+
+<script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-fade';
+import { ref } from 'vue';
+
+const photos = [
+  "placeholder3.jpeg",
+  "placeholder2.jpeg",
+  "placeholder1.jpeg"
+];
+
+const swiperRef = ref(null);
+
+const onSwiperInit = (swiper) => {
+  swiperRef.value = swiper;
+};
+
+const onSwiperResize = () => {
+  if (swiperRef.value) {
+    swiperRef.value.update();
+  }
+};
+</script>
 
 <style scoped>
 .banner {
@@ -39,10 +80,6 @@
 
 .banner-slideshow {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15rem;
   top: 0;
   left: 0;
   width: 100%;
@@ -50,10 +87,20 @@
   z-index: 1;
 }
 
-.banner-image {
-  width: auto;
-  height: 100%;
+.swiper {
   width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 </style>
