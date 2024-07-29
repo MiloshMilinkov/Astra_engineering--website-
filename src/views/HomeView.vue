@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="page-wrapper">
+  <div >
     <main>
       <Banner />
       <Gallery />
@@ -14,9 +14,5 @@
 </template>
 
 <style scoped>
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 </style>

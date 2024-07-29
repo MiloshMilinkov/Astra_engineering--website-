@@ -109,6 +109,9 @@ li {
   padding-bottom: 4px;
   font-weight:700;
 }
+.link.router-link-exact-active {
+  color: #FFD700;
+}
 
 .link:hover {
   color: #FFD700;
