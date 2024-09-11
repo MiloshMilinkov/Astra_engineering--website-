@@ -1,55 +1,67 @@
 <template>
-    <div class="gallery">
-      <h2>Naši projekti</h2>
-      <div class="gallery-grid">
-        <div v-for="location in locations" :key="location.name" class="gallery-item" @click="openSlideshow(location)">
-          <img :src="location.cover" :alt="location.name" class="gallery-image">
-          <div class="location-name">{{ location.name }}</div>
-        </div>
+  <div class="gallery">
+    <h2>NAŠI PROJEKTI</h2>
+    <div class="gallery-grid">
+      <div v-for="location in locations" :key="location.name" class="gallery-item" @click="openSlideshow(location)">
+        <img :src="location.cover" :alt="location.name" class="gallery-image" loading="lazy" />
+        <div class="location-name">{{ location.displayName }}</div>
       </div>
-      <!-- <Slideshow v-if="showSlideshow" :images="currentImages" @close="closeSlideshow" /> -->
     </div>
+    <Slideshow v-if="showSlideshow" :images="currentImages" :title="currentLocationName" @close="closeSlideshow" />
+  </div>
 </template>
-  
+
 <script setup>
 import { ref, onMounted } from 'vue';
 import Slideshow from './Slideshow.vue';
 
-// Dynamically import all images from the Gallery folder
-const imageModules = import.meta.glob('@/assets/Gallery/*/*.jpeg');
+// Dynamically import all images from the specified folder
+const imageModules = import.meta.glob('@/assets/Gallery/*/*.*');
 
-const locations = ref([
-  { name: 'Mesto1', cover: '', images: [] },
-  { name: 'Mesto2', cover: '', images: [] },
-  { name: 'Mesto3', cover: '', images: [] },
-  { name: 'Mesto1', cover: '', images: [] },
-  { name: 'Mesto2', cover: '', images: [] },
-  { name: 'Mesto3', cover: '', images: [] },
-  { name: 'Mesto1', cover: '', images: [] },
-  { name: 'Mesto2', cover: '', images: [] }
-  // Add more locations as needed
-]);
+// Reactive state for locations and slideshow
+const locations = ref([]);
+const showSlideshow = ref(false);
+const currentImages = ref([]);
+const currentLocationName = ref('');
 
+// Function to load images dynamically and lazily
 const loadImages = async () => {
   const imagePaths = Object.keys(imageModules);
-  for (const location of locations.value) {
-    const locationImages = imagePaths.filter(path => path.includes(location.name));
-    if (locationImages.length > 0) {
-      location.cover = (await imageModules[locationImages[0]]()).default; // Set the cover image
-      location.images = await Promise.all(locationImages.map(async imgPath => (await imageModules[imgPath]()).default));
+
+  const locationMap = {};
+
+  // Loop over all images and group them by folder (location)
+  for (const path of imagePaths) {
+    const folderName = path.split('/')[4]; // Extract the folder name (e.g., "Mesto1")
+    if (!locationMap[folderName]) {
+      locationMap[folderName] = {
+        displayName: folderName,
+        cover: '',
+        images: [],
+      };
+    }
+    const image = await imageModules[path]();
+    locationMap[folderName].images.push(image.default);
+
+    // Set the first image as the cover
+    if (!locationMap[folderName].cover) {
+      locationMap[folderName].cover = image.default;
     }
   }
+
+  // Convert locationMap to an array
+  locations.value = Object.values(locationMap);
 };
 
+// Initialize the gallery with images on mount
 onMounted(() => {
   loadImages();
 });
 
-const showSlideshow = ref(false);
-const currentImages = ref([]);
-
+// Slideshow controls
 const openSlideshow = (location) => {
   currentImages.value = location.images;
+  currentLocationName.value = location.displayName;
   showSlideshow.value = true;
 };
 
@@ -57,7 +69,6 @@ const closeSlideshow = () => {
   showSlideshow.value = false;
 };
 </script>
-
 
 <style scoped>
 .gallery {
@@ -68,7 +79,7 @@ const closeSlideshow = () => {
 .gallery h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #2B3A55;
+  color: #2b3a55;
 }
 
 .gallery-grid {
@@ -86,6 +97,7 @@ const closeSlideshow = () => {
 
 .gallery-image {
   width: 100%;
+  height: fit-content;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -102,4 +114,3 @@ const closeSlideshow = () => {
   border-radius: 0 0 10px 10px;
 }
 </style>
-

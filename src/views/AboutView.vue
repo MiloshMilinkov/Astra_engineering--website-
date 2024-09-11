@@ -3,8 +3,8 @@
     <div class="container">
       <div class="content">
         <div class="description-box">
-        <div class="div-logo">
-          <img src="@/assets/Company/logo2.png" alt="Company Logo" class="logo" />
+          <div class="div-logo">
+            <img src="@/assets/Company/logo2.png" alt="Company Logo" class="logo" />
           </div>
 
           <div class="description">
@@ -13,7 +13,7 @@
             <p> Naš cilj je da prevaziđemo očekivanja naših klijenata pružanjem inovativnih rešenja i održavanjem najvišeg nivoa zadovoljstva korisnika.</p>
           </div>
         </div>
-      
+
         <div class="images-section">
           <img src="@/assets/Gallery/Mesto1/placeholder1.jpeg" alt="Image 1" class="image image1" />
           <img src="@/assets/Gallery/Mesto2/placeholder2.jpeg" alt="Image 2" class="image image2" />
@@ -26,7 +26,7 @@
 
 <style scoped>
 .about {
-  padding: 10rem 2rem;
+  padding: 8rem 2rem;
   background-color: #ffffff;
 }
 
@@ -55,14 +55,20 @@
   color: #555;
   text-align: left;
 }
-.description p:nth-child(3){
-  font-weight: bold;;
+
+.description p:nth-child(3) {
+  font-weight: bold;
 }
 
-.logo {
+.div-logo img {
   display: block;
   max-width: 150px;
   margin: 0 auto 1rem auto;
+  width: 150px; 
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.4);
+  border: 5px solid #FFD700;
 }
 
 .images-section {
@@ -104,7 +110,7 @@
     flex-direction: column;
     align-items: center;
   }
-  
+
   .images-section {
     position: static;
     display: flex;
@@ -119,14 +125,5 @@
     width: calc(33.333% - 1rem);
     height: auto;
   }
-}
-
-
-.logo {
-  width: 150px; 
-  height: 150px;
-  border-radius: 50%;
-  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.4);
-  border: 5px solid #FFD700;
 }
 </style>

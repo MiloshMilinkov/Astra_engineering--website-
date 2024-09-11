@@ -17,7 +17,7 @@
         class="swiper"
       >
         <SwiperSlide v-for="(photo, index) in photos" :key="index">
-          <img :src="`src/assets/Gallery/SlideShow/${photo}`" alt="" class="swiper-slide-img">
+          <img :src="`src/assets/SlideShow/SlideShow/${photo}`" alt="" class="swiper-slide-img">
         </SwiperSlide>
       </Swiper>
     </div>
