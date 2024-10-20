@@ -2,8 +2,8 @@
   <div class="gallery">
     <h2>NAŠI PROJEKTI</h2>
     <div class="gallery-grid">
-      <div v-for="location in locations" :key="location.name" class="gallery-item" @click="openSlideshow(location)">
-        <img :src="location.cover" :alt="location.name" class="gallery-image" loading="lazy" />
+      <div v-for="location in locations" :key="location.displayName" class="gallery-item" @click="openSlideshow(location)">
+        <img :src="location.cover" :alt="location.displayName" class="gallery-image" loading="lazy" />
         <div class="location-name">{{ location.displayName }}</div>
       </div>
     </div>
@@ -15,50 +15,60 @@
 import { ref, onMounted } from 'vue';
 import Slideshow from './Slideshow.vue';
 
-// Dynamically import all images from the specified folder
 const imageModules = import.meta.glob('@/assets/Gallery/*/*.*');
 
-// Reactive state for locations and slideshow
 const locations = ref([]);
 const showSlideshow = ref(false);
 const currentImages = ref([]);
 const currentLocationName = ref('');
 
-// Function to load images dynamically and lazily
-const loadImages = async () => {
-  const imagePaths = Object.keys(imageModules);
-
-  const locationMap = {};
-
-  // Loop over all images and group them by folder (location)
-  for (const path of imagePaths) {
-    const folderName = path.split('/')[4]; // Extract the folder name (e.g., "Mesto1")
-    if (!locationMap[folderName]) {
-      locationMap[folderName] = {
-        displayName: folderName,
-        cover: '',
-        images: [],
-      };
-    }
-    const image = await imageModules[path]();
-    locationMap[folderName].images.push(image.default);
-
-    // Set the first image as the cover
-    if (!locationMap[folderName].cover) {
-      locationMap[folderName].cover = image.default;
-    }
-  }
-
-  // Convert locationMap to an array
-  locations.value = Object.values(locationMap);
+const getFolderAndPrefix = (path) => {
+  const parts = path.split('/');
+  const folderName = parts[4]; 
+  const fileName = parts.pop(); 
+  const prefix = parseInt(fileName.split('_')[0], 10); 
+  return { folderName, prefix };
 };
 
-// Initialize the gallery with images on mount
-onMounted(() => {
-  loadImages();
-});
+const loadImages = async () => {
+  const locationMap = {};
 
-// Slideshow controls
+  for (const path of Object.keys(imageModules)) {
+    const { folderName, prefix } = getFolderAndPrefix(path);
+    if (!locationMap[folderName]) {
+      locationMap[folderName] = { displayName: folderName, cover: '', images: [] };
+    }
+
+    const image = await imageModules[path]();
+    locationMap[folderName].images.push({ prefix, url: image.default });
+  }
+
+  locations.value = Object.values(locationMap).map((folder) => {
+    folder.images.sort((a, b) => a.prefix - b.prefix);
+    folder.cover = folder.images.length > 0 ? folder.images[0].url : '';
+
+    return {
+      ...folder,
+      images: folder.images.map((img) => img.url), // Only store image URLs
+    };
+  });
+
+
+  await Promise.all(locations.value.map(async (folder) => {
+    const img = new Image();
+    img.src = folder.cover;
+
+
+    await img.decode();
+    const aspectRatio = img.width / img.height;
+
+ 
+    folder.aspectRatio = aspectRatio;
+  }));
+
+  locations.value.sort((a, b) => a.aspectRatio - b.aspectRatio);
+};
+
 const openSlideshow = (location) => {
   currentImages.value = location.images;
   currentLocationName.value = location.displayName;
@@ -68,9 +78,9 @@ const openSlideshow = (location) => {
 const closeSlideshow = () => {
   showSlideshow.value = false;
 };
-</script>
 
-<style scoped>
+onMounted(loadImages);
+</script><style scoped>
 .gallery {
   padding: 5rem;
   text-align: center;
@@ -87,17 +97,19 @@ const closeSlideshow = () => {
   flex-wrap: wrap;
   gap: 5rem;
   justify-content: center;
+  align-items: flex-start; /* Align items flexibly to adapt to different heights */
 }
 
 .gallery-item {
   position: relative;
-  width: 400px;
+  max-width: 400px; /* You can adjust this value as per your design */
   cursor: pointer;
+  flex: 1 1 auto; /* Allow items to grow and shrink naturally */
 }
 
 .gallery-image {
   width: 100%;
-  height: fit-content;
+  height: auto; /* Maintain natural aspect ratio */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

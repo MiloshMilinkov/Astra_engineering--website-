@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ContactView from '../views/ContactView.vue';
+import Gallery from '@/components/Gallery.vue';
+import Offers from '@/views/Offers.vue';
 
 const routes = [    
   {
@@ -25,6 +27,23 @@ const routes = [
     component: ContactView,
     meta: {
       title: "KONTAKT"
+    }
+  },
+  {
+    path: '/gallery',
+    name: 'gallery',
+    component: Gallery,
+    meta: {
+      title: "GALERIJA"
+    }
+  }
+  ,
+  {
+    path: '/offers',
+    name: 'offers',
+    component: Offers,
+    meta: {
+      title: "USLUGE"
     }
   }
 ]

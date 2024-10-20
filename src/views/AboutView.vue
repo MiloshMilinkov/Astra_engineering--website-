@@ -12,17 +12,33 @@
             <p>Mi smo vodeća građevinska firma sa čvrstom reputacijom za pružanje izuzetnog kvaliteta i usluge. Naš iskusni tim profesionalaca posvećen je obezbeđivanju najviših standarda majstorski rad, bezbednosti i pouzdanosti. Od stambenih do komercijalnih projekata, obrađujemo svaki detalj sa preciznošću i pažnjom.</p>
             <p> Naš cilj je da prevaziđemo očekivanja naših klijenata pružanjem inovativnih rešenja i održavanjem najvišeg nivoa zadovoljstva korisnika.</p>
           </div>
-        </div>
+          <div>
+            <i id="icon1" class="fas fa-file-word"></i> 
+            <a :href="documentFilePath" download>
+              <span >{{ documentFileName}}</span>
+              <i id="icon2" class="fas fa-download"></i> 
+            </a>
+          </div>
 
-        <div class="images-section">
+        </div>
+        
+
+     
+
+        <!-- <div class="images-section">
           <img src="@/assets/Gallery/Mesto1/placeholder1.jpeg" alt="Image 1" class="image image1" />
           <img src="@/assets/Gallery/Mesto2/placeholder2.jpeg" alt="Image 2" class="image image2" />
           <img src="@/assets/Gallery/Mesto3/placeholder3.jpeg" alt="Image 3" class="image image3" />
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+const documentFilePath = '/Files/Referenc lista, Astra Inženjering.doc';
+const documentFileName = 'LISTA REFERENCI, Astra Inženjering.'
+</script>
 
 <style scoped>
 .about {
@@ -62,10 +78,10 @@
 
 .div-logo img {
   display: block;
-  max-width: 150px;
+  max-width: 175px;
   margin: 0 auto 1rem auto;
-  width: 150px; 
-  height: 150px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
   box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.4);
   border: 5px solid #FFD700;
@@ -125,5 +141,26 @@
     width: calc(33.333% - 1rem);
     height: auto;
   }
+}
+
+a,span {
+  text-decoration: none;
+  color: #2B3A55;
+  font-weight: 700;
+}
+
+#icon1 {
+  font-size: 40px;
+  margin-right: 15px;
+  color: #2B3A55;
+}
+
+a:hover,span:hover, #icon2:hover{
+  color: #FFD700;
+}
+#icon2 {
+  font-size: 20px;
+  margin-left: 5px;
+  color: #2B3A55;
 }
 </style>
