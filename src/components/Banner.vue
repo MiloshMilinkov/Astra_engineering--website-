@@ -1,4 +1,3 @@
-<!-- banner.vue -->
 <template>
   <div class="banner">
     <div class="banner-content">
@@ -8,7 +7,7 @@
       <Swiper
         :modules="[Autoplay, EffectFade]"
         :autoplay="{ delay: 5000 }"
-        :loop="true"
+        :loop="photos.length > 1"
         effect="fade"
         :fadeEffect="{ crossFade: true }"
         :speed="1000"
@@ -17,7 +16,7 @@
         class="swiper"
       >
         <SwiperSlide v-for="(photo, index) in photos" :key="index">
-          <img :src="`src/assets/SlideShow/SlideShow/${photo}`" alt="Slideshow Image" class="swiper-slide-img" />
+          <img :src="photo" alt="Slideshow Image" class="swiper-slide-img" />
         </SwiperSlide>
       </Swiper>
     </div>
@@ -34,9 +33,22 @@ import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const photos = ["placeholder3.jpeg", "placeholder2.jpeg", "placeholder1.jpeg"];
+// Dynamically import all images from the SlideShow folder
+const photos = ref([]);
+
+onMounted(() => {
+  const imageFiles = import.meta.glob('@/assets/SlideShow/SlideShow/*.jpeg');
+  
+  // Convert the imports to URLs and push them to the photos array
+  for (const path in imageFiles) {
+    imageFiles[path]().then((mod) => {
+      photos.value.push(mod.default);
+    });
+  }
+});
+
 const swiperRef = ref(null);
 
 const onSwiperInit = (swiper) => {
@@ -47,6 +59,7 @@ const onSwiperResize = () => {
   swiperRef.value?.update();
 };
 </script>
+
 
 <style scoped>
 .banner {
