@@ -25,8 +25,7 @@ const currentLocationName = ref('');
 const getFolderAndPrefix = (path) => {
   const parts = path.split('/');
   const folderName = parts[4]; 
-  const fileName = parts.pop(); 
-  const prefix = parseInt(fileName.split('_')[0], 10); 
+  const prefix = parseInt(parts.pop().split('_')[0], 10); 
   return { folderName, prefix };
 };
 
@@ -36,51 +35,46 @@ const loadImages = async () => {
   for (const path of Object.keys(imageModules)) {
     const { folderName, prefix } = getFolderAndPrefix(path);
     if (!locationMap[folderName]) {
-      locationMap[folderName] = { displayName: folderName, cover: '', images: [] };
+      locationMap[folderName] = { displayName: folderName, cover: '', images: [], paths: [] };
     }
-
-    const image = await imageModules[path]();
-    locationMap[folderName].images.push({ prefix, url: image.default });
+    locationMap[folderName].paths.push({ prefix, path });
   }
 
-  locations.value = Object.values(locationMap).map((folder) => {
-    folder.images.sort((a, b) => a.prefix - b.prefix);
-    folder.cover = folder.images.length > 0 ? folder.images[0].url : '';
+  for (const folder of Object.values(locationMap)) {
+    folder.paths.sort((a, b) => a.prefix - b.prefix);
 
-    return {
-      ...folder,
-      images: folder.images.map((img) => img.url), // Only store image URLs
-    };
-  });
+    const firstImageModule = await imageModules[folder.paths[0].path]();
+    folder.cover = firstImageModule.default;
 
+    folder.images = folder.paths.map(file => file.path);
+  }
 
-  await Promise.all(locations.value.map(async (folder) => {
-    const img = new Image();
-    img.src = folder.cover;
-
-
-    await img.decode();
-    const aspectRatio = img.width / img.height;
-
- 
-    folder.aspectRatio = aspectRatio;
-  }));
-
-  locations.value.sort((a, b) => a.aspectRatio - b.aspectRatio);
+  locations.value = Object.values(locationMap);
 };
 
-const openSlideshow = (location) => {
-  currentImages.value = location.images;
+const openSlideshow = async (location) => {
   currentLocationName.value = location.displayName;
+
+  const images = await Promise.all(
+    location.images.map(async (filePath) => {
+      const imgModule = await imageModules[filePath]();
+      return imgModule.default;
+    })
+  );
+
+  currentImages.value = images;
   showSlideshow.value = true;
 };
 
 const closeSlideshow = () => {
   showSlideshow.value = false;
+  currentImages.value = []; 
 };
 
 onMounted(loadImages);
-</script><style scoped>
+</script>
+
+<style scoped>
 .gallery {
   padding: 5rem;
   text-align: center;
@@ -97,19 +91,19 @@ onMounted(loadImages);
   flex-wrap: wrap;
   gap: 5rem;
   justify-content: center;
-  align-items: flex-start; /* Align items flexibly to adapt to different heights */
+  align-items: flex-start;
 }
 
 .gallery-item {
   position: relative;
-  max-width: 400px; /* You can adjust this value as per your design */
+  max-width: 400px;
   cursor: pointer;
-  flex: 1 1 auto; /* Allow items to grow and shrink naturally */
+  flex: 1 1 auto;
 }
 
 .gallery-image {
   width: 100%;
-  height: auto; /* Maintain natural aspect ratio */
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
