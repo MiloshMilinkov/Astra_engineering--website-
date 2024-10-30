@@ -70,6 +70,8 @@ const documentFileName = 'LISTA REFERENCI, Astra Inženjering.'
   font-size: 1.2rem;
   color: #555;
   text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .description p:nth-child(3) {
@@ -79,7 +81,7 @@ const documentFileName = 'LISTA REFERENCI, Astra Inženjering.'
 .div-logo img {
   display: block;
   max-width: 175px;
-  margin: 0 auto 1rem auto;
+  margin: 0 auto 2rem auto;
   width: 175px;
   height: 175px;
   border-radius: 50%;
@@ -87,59 +89,13 @@ const documentFileName = 'LISTA REFERENCI, Astra Inženjering.'
   border: 5px solid #FFD700;
 }
 
-.images-section {
-  position: relative;
-  flex: 1;
-  height: 400px;
-}
-
-.image {
-  position: absolute;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-}
-
-.image1 {
-  top: 0;
-  left: 0;
-  width: 60%;
-  height: 60%;
-}
-
-.image2 {
-  top: 20%;
-  left: 45%;
-  width: 60%;
-  height: 60%;
-}
-
-.image3 {
-  top: 45%;
-  left: 15%;
-  width: 60%;
-  height: 60%;
-}
-
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
     align-items: center;
   }
-
-  .images-section {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-    height: auto;
-  }
-
-  .image {
-    position: static;
-    width: calc(33.333% - 1rem);
-    height: auto;
+  .description {
+    text-align: center;
   }
 }
 

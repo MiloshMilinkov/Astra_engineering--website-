@@ -149,6 +149,10 @@ nav {
 }
 
 .dropdown-nav .link {
+  color: #FFFFFF;
+  font-size: 18px;
+}
+.dropdown-nav .link:hover{
   color: #FFD700;
   font-size: 18px;
 }
