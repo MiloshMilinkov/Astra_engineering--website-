@@ -6,7 +6,7 @@
           <i class="fas fa-phone-alt"></i>
           <h3>Telefon</h3>
           <div class="phone-wrapper">
-            <p id="phoneNumber">+381 61/2700-420</p>   
+            <p id="phoneNumber">+381 61/2700-432</p>   
             <button @click="copyOnClick" class="copy-button">
               <i class="fas fa-copy"></i>
             </button>
