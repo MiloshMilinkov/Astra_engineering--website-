@@ -22,14 +22,6 @@
 
         </div>
         
-
-     
-
-        <!-- <div class="images-section">
-          <img src="@/assets/Gallery/Mesto1/placeholder1.jpeg" alt="Image 1" class="image image1" />
-          <img src="@/assets/Gallery/Mesto2/placeholder2.jpeg" alt="Image 2" class="image image2" />
-          <img src="@/assets/Gallery/Mesto3/placeholder3.jpeg" alt="Image 3" class="image image3" />
-        </div> -->
       </div>
     </div>
   </section>
@@ -38,6 +30,21 @@
 <script setup>
 const documentFilePath = '/Files/Referenc lista, Astra Inženjering.doc';
 const documentFileName = 'LISTA REFERENCI, Astra Inženjering.'
+import { useHead } from '@vueuse/head';
+useHead({
+    title: 'About- astra-engineering',
+    meta: [
+      { name: 'description', content: 'About astra-engineering.' },
+      { name: 'keywords', content: 'about, astra-engineering, o nama, galerija, astra inženjering' },
+      { property: 'og:title', content: 'About' },
+      { property: 'og:description', content: 'About astra-engineering.' },
+    ],
+    link: [
+      { rel: 'canonical', href: 'https://astra-engineering.vercel.app/about' } // Update with your actual URL
+    ]
+  });
+
+
 </script>
 
 <style scoped>
