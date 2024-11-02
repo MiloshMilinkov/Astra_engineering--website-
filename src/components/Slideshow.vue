@@ -1,6 +1,8 @@
 <template>
-  <div class="slideshow">
-    <div class="slideshow-overlay" @click="close"></div>
+  <div class="slideshow" @keyup.esc="close" 
+                         @keyup.left="prevImage" 
+                         @keyup.right="nextImage" tabindex="0">
+    <div class="slideshow-overlay"></div>
     <div class="slideshow-content" @mouseenter="hideControls" @mouseleave="showControls">
       <span class="close-btn" @click="close">&times;</span>
       <img :src="currentImage" alt="Slideshow Image" class="slideshow-image" />
@@ -11,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
   images: {
@@ -37,6 +39,20 @@ const prevImage = () => {
 const close = () => {
   emit('close');
 };
+
+const handleKeydown = (event) => {
+  if (event.key === 'ArrowRight') nextImage();
+  if (event.key === 'ArrowLeft') prevImage();
+  if (event.key === 'Escape') close();
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown);
+});
 </script>
 
 <style scoped>
@@ -54,7 +70,6 @@ const close = () => {
   position: absolute;
   inset: 0;
   background: transparent;
-  cursor: pointer;
 }
 
 .slideshow-content {
@@ -79,7 +94,6 @@ const close = () => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
-
 
 .arrow-btn {
   position: absolute;
