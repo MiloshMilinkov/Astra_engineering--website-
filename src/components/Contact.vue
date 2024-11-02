@@ -33,17 +33,17 @@
         <h3>Pošaljite nam poruku</h3>
         <div>
           <label for="email">Vaš mail: </label>
-          <input type="email" id="email" v-model="email" required>
+          <input type="email" id="email" v-model="email" required disabled >
         </div>
         <div>
           <label for="subject">Naslov: </label>
-          <input type="text" id="subject" v-model="subject" required>
+          <input type="text" id="subject" v-model="subject" required disabled > 
         </div>
         <div>
           <label for="message">Poruka: </label>
-          <textarea id="message" v-model="message" required></textarea>
+          <textarea id="message" v-model="message" required disabled ></textarea>
         </div>
-        <button type="submit" class="btn-submit">POŠALJI</button>
+        <button type="submit" class="btn-submit" disabled >OPCIJA KONTAKTIRANJA U IZRADI!</button>
       </form>
     </div>
   </section>

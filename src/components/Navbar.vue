@@ -3,11 +3,11 @@
     <nav>
       <!-- Desktop Navigation (visible in large screens) -->
       <ul v-if="!isMobile" class="navigation">
-        <li><router-link class="link" :to="{ name: 'home' }">POČETNA</router-link></li>
-        <li><router-link class="link" :to="{ name: 'about' }">O NAMA</router-link></li>
-        <li><router-link class="link" :to="{ name: 'offers' }">USLUGE</router-link></li>
-        <li><router-link class="link" :to="{ name: 'gallery' }">GALERIJA</router-link></li>
-        <li><router-link class="link" :to="{ name: 'contact' }">KONTAKT</router-link></li>
+        <li><router-link class="link" :to="{ name: 'početna' }">POČETNA</router-link></li>
+        <li><router-link class="link" :to="{ name: 'onama' }">O NAMA</router-link></li>
+        <li><router-link class="link" :to="{ name: 'usluge' }">USLUGE</router-link></li>
+        <li><router-link class="link" :to="{ name: 'galerija' }">GALERIJA</router-link></li>
+        <li><router-link class="link" :to="{ name: 'kontakt' }">KONTAKT</router-link></li>
       </ul>
 
       <!-- Mobile Navigation Button (visible in mobile screens) -->
@@ -18,11 +18,11 @@
         <transition name="mobile-nav">
           <!-- Mobile Navigation Dropdown -->
           <ul v-if="showMobileNav" class="dropdown-nav">
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'home' }">POČETNA</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'gallery' }">GALERIJA</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'about' }">O NAMA</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'contact' }">KONTAKT</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'offers' }">USLUGE</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'početna' }">POČETNA</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'onama' }">GALERIJA</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'usluge' }">O NAMA</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'galerija' }">KONTAKT</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'kontakt' }">USLUGE</router-link></li>
           </ul>
         </transition>
       </div>

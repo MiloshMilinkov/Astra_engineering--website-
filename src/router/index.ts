@@ -7,31 +7,31 @@ import Offers from '@/views/Offers.vue';
 const routes = [    
   {
     path: '/',
-    name: 'home',
+    name: 'početna',
     component: HomeView,
     meta: {
       title: "ASTRA INŽENJERING"
     }
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/onama',
+    name: 'onama',
     component: () => import('../views/AboutView.vue'),
     meta: {
       title: "O NAMA"
     }
   },
   {
-    path: '/contact',
-    name: 'contact',
+    path: '/kontakt',
+    name: 'kontakt',
     component: ContactView,
     meta: {
       title: "KONTAKT"
     }
   },
   {
-    path: '/gallery',
-    name: 'gallery',
+    path: '/galerija',
+    name: 'galerija',
     component: Gallery,
     meta: {
       title: "GALERIJA"
@@ -39,8 +39,8 @@ const routes = [
   }
   ,
   {
-    path: '/offers',
-    name: 'offers',
+    path: '/usluge',
+    name: 'usluge',
     component: Offers,
     meta: {
       title: "USLUGE"
