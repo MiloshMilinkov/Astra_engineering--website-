@@ -40,7 +40,7 @@
       const rect = galleryElement.getBoundingClientRect();
       const triggerTrashold = 300;
       if (rect.top < window.innerHeight - triggerTrashold && rect.bottom >= triggerTrashold) {
-        router.push('/gallery');
+        router.push('/galerija');
       }
     }
   };
