@@ -32,11 +32,11 @@ const documentFilePath = '/Files/Referenc lista, Astra Inženjering.doc';
 const documentFileName = 'LISTA REFERENCI, Astra Inženjering.'
 import { useHead } from '@vueuse/head';
 useHead({
-    title: 'About- astra-engineering',
+    title: 'O NAMA',
     meta: [
       { name: 'description', content: 'About astra-engineering.' },
-      { name: 'keywords', content: 'about, astra-engineering, o nama, galerija, astra inženjering' },
-      { property: 'og:title', content: 'About' },
+      { name: 'keywords', content: 'about, astra-engineering, o nama, galerija, astra inženjering o nama, astra inzenjering o nama' },
+      { property: 'og:title', content: 'About, O NAMA' },
       { property: 'og:description', content: 'About astra-engineering.' },
     ],
     link: [

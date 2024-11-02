@@ -8,15 +8,15 @@
 import Contact from '@/components/Contact.vue';
 import { useHead } from '@vueuse/head';
 useHead({
-    title: 'Contact - astra-engineering',
+    title: 'KONTAKT',
     meta: [
       { name: 'description', content: 'Contact astra-engineering.' },
-      { name: 'keywords', content: 'contact, astra-engineering, kontakt, astra inženjering kontakt' },
+      { name: 'keywords', content: 'contact, astra-engineering, kontakt, astra inženjering kontakt, astra inzenjering kontakt' },
       { property: 'og:title', content: 'astra inženjering' },
-      { property: 'og:description', content: 'Contact astra-engineering.' },
+      { property: 'og:description', content: 'Contact astra-engineering.,astra inzenjering kontakt.' },
     ],
     link: [
-      { rel: 'canonical', href: 'https://astra-engineering.vercel.app/about' } // Update with your actual URL
+      { rel: 'canonical', href: 'https://astra-engineering.vercel.app/contact' } // Update with your actual URL
     ]
   });
 </script>

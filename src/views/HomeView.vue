@@ -22,11 +22,11 @@
   const router = useRouter();
 
     useHead({
-    title: 'Home - astra-engineering',
+    title: 'ASTRA INŽENJERING',
     meta: [
       { name: 'description', content: 'Welcome to astra-engineering - Explore our gallery and discover more about us!' },
-      { name: 'keywords', content: 'home, astra-engineering, gallery, welcome, početna, galerija, dobrodošli, astra inženjering' },
-      { property: 'og:title', content: 'astra inženjering' },
+      { name: 'keywords', content: 'home, astra-engineering, welcome, početna, galerija, dobrodošli, astra inženjering, astra inzenjering' },
+      { property: 'og:title', content: 'astra inženjering, astra inzenjering' },
       { property: 'og:description', content: 'Welcome to astra inženjering - Explore our gallery and discover more about us!' },
     ],
     link: [
