@@ -19,10 +19,11 @@
           <!-- Mobile Navigation Dropdown -->
           <ul v-if="showMobileNav" class="dropdown-nav">
             <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'početna' }">POČETNA</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'onama' }">GALERIJA</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'usluge' }">O NAMA</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'galerija' }">KONTAKT</router-link></li>
-            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'kontakt' }">USLUGE</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'onama' }">O NAMA</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'usluge' }">USLUGE</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'galerija' }">GALERIJA</router-link></li>
+            <li><router-link @click="toggleMobileNav" class="link" :to="{ name: 'kontakt' }">KONTAKT</router-link></li>
+
           </ul>
         </transition>
       </div>
