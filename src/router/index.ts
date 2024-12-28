@@ -12,7 +12,8 @@ const routes = [
     name: 'početna',
     component: HomeView,
     meta: {
-      title: "ASTRA INŽENJERING"
+      title: "ASTRA INŽENJERING",
+      description: "Dobrodošli na zvaničnu stranicu ASTRA INŽENJERING-a. Pružamo profesionalne građevinske usluge najvišeg kvaliteta.",
     }
   },
   {
@@ -20,7 +21,8 @@ const routes = [
     name: 'onama',
     component: () => import('../views/AboutView.vue'),
     meta: {
-      title: "O NAMA"
+      title: "O NAMA",
+      description: "Saznajte više o ASTRA INŽENJERING-u, našoj istoriji, vrednostima i stručnom timu."
     }
   },
   {
@@ -28,7 +30,8 @@ const routes = [
     name: 'kontakt',
     component: ContactView,
     meta: {
-      title: "KONTAKT"
+      title: "KONTAKT",
+      description: "Kontaktirajte nas za sva pitanja, ponude i informacije. Vaša komunikacija je naša prioritet."
     }
   },
   {
@@ -36,7 +39,8 @@ const routes = [
     name: 'galerija',
     component: Gallery,
     meta: {
-      title: "GALERIJA"
+      title: "GALERIJA",
+      description: "Pogledajte našu galeriju projekata i inspirativnih radova. Kvalitet u svakom detalju."
     }
   },
   {
@@ -44,7 +48,8 @@ const routes = [
     name: 'usluge',
     component: Offers,
     meta: {
-      title: "USLUGE"
+      title: "USLUGE",
+      description: "Otkrijte široku ponudu građevinskih usluga koje pruža ASTRA INŽENJERING."
     }
   }
 ];
@@ -55,10 +60,25 @@ const router = createRouter({
   routes
 });
 
-// Set document.title only in the browser environment
+// Set document.title and meta description only in the browser environment
 if (!isServer) {
   router.beforeEach((to, from, next) => {
-    document.title = `${to.meta.title}` || 'Default Title'; // Fallback title
+    // Set the page title
+    document.title = `${to.meta.title || 'Default Title'}`;
+
+    // Set the meta description
+    const metaDescription = document.querySelector("meta[name='description']");
+    const descriptionContent = to.meta.description as string || 'Default Description'; // Type assertion
+
+    if (metaDescription) {
+      metaDescription.setAttribute("content", descriptionContent);
+    } else {
+      const descriptionTag = document.createElement('meta');
+      descriptionTag.setAttribute('name', 'description');
+      descriptionTag.setAttribute('content', descriptionContent);
+      document.head.appendChild(descriptionTag);
+    }
+
     next();
   });
 }
