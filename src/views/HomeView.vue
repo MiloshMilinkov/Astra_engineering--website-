@@ -22,15 +22,17 @@
   const router = useRouter();
 
     useHead({
-    title: 'ASTRA INŽENJERING',
+    title: 'ASTRA INŽENJERING | Građevinske Usluge u Srbiji',
     meta: [
-      { name: 'description', content: 'Welcome to astra-engineering - Explore our gallery and discover more about us!' },
-      { name: 'keywords', content: 'home, astra-engineering, welcome, početna, galerija, dobrodošli, astra inženjering, astra inzenjering' },
-      { property: 'og:title', content: 'astra inženjering, astra inzenjering' },
-      { property: 'og:description', content: 'Welcome to astra inženjering - Explore our gallery and discover more about us!' },
+      { name: 'description', content: 'ASTRA INŽENJERING - Profesionalna građevinska firma u Srbiji koja pruža kvalitetne građevinske usluge. Kontaktirajte nas za više informacija.' },
+      { name: 'keywords', content: 'Astra Inženjering, građevinska firma, građevinske usluge, gradjevinski radovi, Srbija, građevina' },
+      { property: 'og:title', content: 'ASTRA INŽENJERING - Građevinska Firma u Srbiji' },
+      { property: 'og:description', content: 'Kvalitetne građevinske usluge od profesionalne firme ASTRA INŽENJERING.' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://astra-engineering.vercel.app' },
     ],
     link: [
-      { rel: 'canonical', href: 'https://astra-engineering.vercel.app' } // Update with your actual URL
+      { rel: 'canonical', href: 'https://astra-engineering.vercel.app' }
     ]
   });
 
