@@ -1,10 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ContactView from '../views/ContactView.vue';
 import Gallery from '@/components/Gallery.vue';
 import Offers from '@/views/Offers.vue';
 
-const routes = [    
+const isServer = typeof window === 'undefined'; // Check if running in server-side context
+
+const routes = [
   {
     path: '/',
     name: 'početna',
@@ -36,8 +38,7 @@ const routes = [
     meta: {
       title: "GALERIJA"
     }
-  }
-  ,
+  },
   {
     path: '/usluge',
     name: 'usluge',
@@ -46,15 +47,20 @@ const routes = [
       title: "USLUGE"
     }
   }
-]
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // Use memory history during server-side rendering
+  history: isServer ? createMemoryHistory() : createWebHistory(import.meta.env.BASE_URL),
   routes
 });
 
-router.beforeEach((to, from, next) =>{
-  document.title= `${to.meta.title}`;
-  next();
-});
-export default router
+// Set document.title only in the browser environment
+if (!isServer) {
+  router.beforeEach((to, from, next) => {
+    document.title = `${to.meta.title}` || 'Default Title'; // Fallback title
+    next();
+  });
+}
+
+export default router;
